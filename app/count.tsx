@@ -1,23 +1,23 @@
 import {useState} from "react";
-import './css/toggle.css';
+import './css/count.css';
 
 export default function Toggle() {
-    const [count, setCount] = useState(0);
+    const [candynumber, setCandynumber] = useState(0);
 
     function incrementCount() {
-        setCount(count+1);
+        setCandynumber(candynumber+1);
     }
 
     function decrementCount() {
-        setCount(count-1);
+        setCandynumber(candynumber-1);
     }
     
 
     return (
-        <div className="toggle-block">
+        <div className="count-block">
             <span>How many candies do you want?</span>
             <button className="minusButton" onClick={decrementCount}>-</button>
-            <span className="count-number">{count}</span>
+            <span className="count-number">{candynumber}</span>
             <button className="plusButton" onClick={incrementCount}>+</button>
         </div>
     )

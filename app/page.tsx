@@ -1,6 +1,6 @@
 "use client"
 import {useState} from "react"
-import Toggle from "./toggle"
+import Toggle from "./count"
 // import {use} from "react"
 
 export default function Home() {
