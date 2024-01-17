@@ -1,7 +1,7 @@
 "use client"
-import {useState} from "react"
-import Toggle from "./count"
-// import {use} from "react"
+import {useState} from "react";
+import Count from "./count";
+import Toggle from "./toggle";
 
 export default function Home() {
 
@@ -14,9 +14,10 @@ const changeName = () => {
 
   return (
     <div>
+      <Count></Count>
       <Toggle></Toggle>
-      <p>{name}</p>
-      <button onClick={changeName}>Click Button</button>
+      {/* <p>{name}</p>
+      <button onClick={changeName}>Click Button</button> */}
     </div>
   )
 }

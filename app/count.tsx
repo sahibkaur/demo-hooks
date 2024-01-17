@@ -1,7 +1,7 @@
 import {useState} from "react";
 import './css/count.css';
 
-export default function Toggle() {
+export default function Count() {
     const [candynumber, setCandynumber] = useState(0);
 
     function incrementCount() {
