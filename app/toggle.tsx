@@ -4,13 +4,8 @@ import './css/toggle.css';
 export default function Toggle() {
     const [resourceType, setResourceType] = useState('posts');
     const [items, setItems] = useState([]);
-    if(typeof window !== 'undefined') {
-        const [windowWidth, setwindowWidth] =useState(window.innerWidth);
-        const handleResize = () => {
-                setwindowWidth(window.innerWidth)  
-        }
-    }
-    
+
+    const [windowWidth, setwindowWidth] =useState(typeof window !== 'undefined' ? window.innerWidth : 0);
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
@@ -21,6 +16,7 @@ export default function Toggle() {
     const handleResize = () => {
         if(typeof window !== 'undefined') {
             setwindowWidth(window.innerWidth)
+            console.log(windowWidth);
         }    
     }
 
