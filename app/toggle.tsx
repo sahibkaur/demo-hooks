@@ -27,7 +27,7 @@ export default function Toggle() {
                 <button onClick={() => setResourceType('users')}>Users</button>
                 <button onClick={() => setResourceType('comments')}>Comments </button>
             </div>
-            <h1>{resourceType}</h1>
+            <h1>Jason data for {resourceType}:</h1>
             {items.map(item => {
                 return <pre>{JSON.stringify(item)}</pre>
             }).slice(0,5)}
