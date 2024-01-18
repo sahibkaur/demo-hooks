@@ -29,7 +29,7 @@ export default function Toggle() {
             </div>
             <h1>Jason data for {resourceType}:</h1>
             {items.map(item => {
-                return <pre>{JSON.stringify(item)}</pre>
+                return <pre key="item.userId">{JSON.stringify(item)}</pre>
             }).slice(0,5)}
             <p>Your current window width is: {windowWidth}</p>
         </div>
