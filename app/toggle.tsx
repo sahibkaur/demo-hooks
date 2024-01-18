@@ -17,7 +17,9 @@ export default function Toggle() {
     }
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize)
+        if(typeof window !== 'undefined') {
+            window.addEventListener('resize', handleResize)
+        }
     },[]);
 
     return (
