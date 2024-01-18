@@ -4,7 +4,13 @@ import './css/toggle.css';
 export default function Toggle() {
     const [resourceType, setResourceType] = useState('posts');
     const [items, setItems] = useState([]);
-    const [windowWidth, setwindowWidth] =useState(window.innerWidth);
+    if(typeof window !== 'undefined') {
+        const [windowWidth, setwindowWidth] =useState(window.innerWidth);
+        const handleResize = () => {
+                setwindowWidth(window.innerWidth)  
+        }
+    }
+    
 
     useEffect(() => {
         fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
@@ -13,12 +19,16 @@ export default function Toggle() {
     }, [resourceType]);
 
     const handleResize = () => {
-        setwindowWidth(window.innerWidth)
+        if(typeof window !== 'undefined') {
+            setwindowWidth(window.innerWidth)
+        }    
     }
 
     useEffect(() => {
         if(typeof window !== 'undefined') {
-            window.addEventListener('resize', handleResize)
+            window.addEventListener('resize', handleResize);
+        } else {
+            console.log("You are on server");
         }
     },[]);
 
@@ -33,7 +43,7 @@ export default function Toggle() {
             {items.map(item => {
                 return <pre key="item.userId">{JSON.stringify(item)}</pre>
             }).slice(0,5)}
-            <p>Your current window width is: {windowWidth}</p>
+            
         </div>
     );
 
