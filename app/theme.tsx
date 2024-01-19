@@ -5,18 +5,21 @@ import './css/theme.css';
 export default function Theme() {
     const [number, setNumber] = useState(0);
     const [dark, setDark] = useState(false);
+
     const doubleNumber =  useMemo(() => {
         return slowFunction(number);
     },[number]);
-    const themeStyles ={
+
+    const themeStyles = useMemo (() => {
+        return {
         backgroundColor: dark ? '#2D2D2A' : '#E5DCC5',
         color: dark ? 'white': '#2D2D2A'
-    };
+        }
+    }, [dark]);
 
-    useEffect(() =>  useMemo( () =>  {
+    useEffect(() =>  {
         console.log("Theme changed");
-    }, [themeStyles])
-    , [dark]);
+    }, [themeStyles]);
 
     function slowFunction(num: any) {
         console.log("Calling Slow Function");
