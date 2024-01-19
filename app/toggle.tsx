@@ -1,24 +1,46 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import './css/toggle.css';
 
 export default function Toggle() {
-    const [count, setCount] = useState(0);
+    const [resourceType, setResourceType] = useState('posts');
+    const [items, setItems] = useState([]);
 
-    function incrementCount() {
-        setCount(count+1);
+    const [windowWidth, setwindowWidth] =useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
+    useEffect(() => {
+        fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+      .then(response => response.json())
+      .then(json => setItems(json))
+    }, [resourceType]);
+
+    const handleResize = () => {
+        if(typeof window !== 'undefined') {
+            setwindowWidth(window.innerWidth)
+            console.log(windowWidth);
+        }    
     }
 
-    function decrementCount() {
-        setCount(count-1);
-    }
-    
+    useEffect(() => {
+        if(typeof window !== 'undefined') {
+            window.addEventListener('resize', handleResize);
+        } else {
+            console.log("You are on server");
+        }
+    },[]);
 
     return (
-        <div className="toggle-block">
-            <span>How many candies do you want?</span>
-            <button className="minusButton" onClick={decrementCount}>-</button>
-            <span className="count-number">{count}</span>
-            <button className="plusButton" onClick={incrementCount}>+</button>
+        <div className="nav">
+            <div>
+                <button onClick={() => setResourceType('posts')}>Posts</button>
+                <button onClick={() => setResourceType('users')}>Users</button>
+                <button onClick={() => setResourceType('comments')}>Comments </button>
+            </div>
+            <h1>Jason data for {resourceType}:</h1>
+            {items.map(item => {
+                return <pre key="item.userId">{JSON.stringify(item)}</pre>
+            }).slice(0,5)}
+            
         </div>
-    )
+    );
+
 }
