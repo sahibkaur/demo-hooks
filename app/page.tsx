@@ -3,6 +3,7 @@ import {useState} from "react";
 import Count from "./count";
 import Toggle from "./toggle";
 import Theme from './theme';
+import Demo from './Demo'
 
 export default function Home() {
 
@@ -20,6 +21,7 @@ const changeName = () => {
       <Theme></Theme>
       {/* <p>{name}</p>
       <button onClick={changeName}>Click Button</button> */}
+      <Demo></Demo>
     </div>
   )
 }
